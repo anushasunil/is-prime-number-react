@@ -6,15 +6,17 @@ export default function App() {
   var [number, setNumber] = useState(0);
 
   function isPrimeNumber() {
-    if (number > 0) {
+    if (number > 1) {
       for (var i = 2; i < number; i++) {
         if (number % i === 0) {
           return 2;
         }
       }
       return 1;
-    } else {
+    } else if (number === "0" || number === "1") {
       return 3;
+    } else {
+      return 4;
     }
   }
 
@@ -29,6 +31,10 @@ export default function App() {
         setStatement(number + " is not a prime number.");
         break;
       }
+      case 3: {
+        setStatement(number + " is neither a prime number nor a composite.");
+        break;
+      }
       default:
         setStatement("please enter a valid input.");
     }
@@ -40,7 +46,7 @@ export default function App() {
         <h1>is Prime Number? </h1>
         <input
           placeholder={"enter a number"}
-          onChange={(element) => setNumber(Number(element.target.value))}
+          onChange={(element) => setNumber(element.target.value)}
         />
         <button onClick={() => clickHandler()}>Check</button>
         <p>{statement}</p>
